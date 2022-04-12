@@ -37,7 +37,8 @@ const Home: NextPage = () => {
 
   const tick = () => {
     box.rotation.y += 0.05
-    box.rotation.z += 0.02
+    box.rotation.z += 0.05
+    box.rotation.x += 0.05
     renderer.render(scene, camera)
 
     requestAnimationFrame(tick)
