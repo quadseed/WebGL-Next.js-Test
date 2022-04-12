@@ -11,45 +11,44 @@ const Home: NextPage = () => {
 
     const renderer = new THREE.WebGLRenderer()
 
-  const elm = mountRef.current
+    const elm = mountRef.current
 
-  elm?.appendChild(renderer.domElement)
+    elm?.appendChild(renderer.domElement)
 
-  renderer.setPixelRatio(window.devicePixelRatio)
+    renderer.setPixelRatio(window.devicePixelRatio)
 
-  renderer.setSize(width, height)
+    renderer.setSize(width, height)
 
-  const scene = new THREE.Scene()
+    const scene = new THREE.Scene()
 
-  const camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000)
+    const camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000)
 
-  const geometory = new THREE.BoxGeometry(2, 2, 2)
-  const material = new THREE.MeshPhongMaterial({color: 0x73270ff})
-  const box = new THREE.Mesh(geometory, material)
-  box.position.z = -5;
-  scene.add(box)
+    const geometory = new THREE.BoxGeometry(2, 2, 2)
+    const material = new THREE.MeshPhongMaterial({color: 0x73270ff})
+    const box = new THREE.Mesh(geometory, material)
+    box.position.z = -5;
+    scene.add(box)
 
 
-  const directionalLight = new THREE.DirectionalLight(0xffffff)
-  directionalLight.position.set(1, 1, 1)
+    const directionalLight = new THREE.DirectionalLight(0xffffff)
+    directionalLight.position.set(1, 1, 1)
 
-  scene.add(directionalLight)
+    scene.add(directionalLight)
 
-  const tick = () => {
-    box.rotation.y += 0.05
-    box.rotation.z += 0.05
-    box.rotation.x += 0.05
-    renderer.render(scene, camera)
+    const tick = () => {
+      box.rotation.y += 0.05
+      box.rotation.z += 0.05
+      box.rotation.x += 0.05
+      renderer.render(scene, camera)
 
-    requestAnimationFrame(tick)
-  }
+      requestAnimationFrame(tick)
+    }
 
-  tick()
+    tick()
 
   return () => {
     elm?.removeChild(renderer.domElement)
   }
-
   }, [])
 
   
