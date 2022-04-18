@@ -1,0 +1,32 @@
+name: GitHub Pages Deployment
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '15.x'
+
+      - name: Install Dependencies
+        run: npm install --frozen-lockfile
+
+      - name: build
+        run: npm run build
+
+      - name: Export Static HTML
+        run: npm run export && touch out/.nojekyll
+
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./out
