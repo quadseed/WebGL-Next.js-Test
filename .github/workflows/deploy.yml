@@ -23,9 +23,6 @@ jobs:
 
       - name: Export Static HTML
         run: yarn run export && touch out/.nojekyll
-      
-      - name: add CNAME
-        run: cp ./CNAME ./out/
 
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3

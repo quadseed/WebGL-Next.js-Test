@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  assetPrefix: "/WebGL-Next.js-Test",
-  basePath: "/WebGL-Next.js-Test",
+  assetPrefix: process.env.NODE_ENV === "production" ? "/WebGL-Next.js-Test" : "",
+  basePath: process.env.NODE_ENV === "production" ? "/WebGL-Next.js-Test" : "",
   trailingSlash: true,
 }
 
