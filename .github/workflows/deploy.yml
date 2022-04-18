@@ -13,16 +13,19 @@ jobs:
       - name: setup Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '15.x'
+          node-version: '16.x'
 
       - name: Install Dependencies
-        run: npm install --frozen-lockfile
+        run: yarn install --frozen-lockfile
 
       - name: build
-        run: npm run build
+        run: yarn run build
 
       - name: Export Static HTML
-        run: npm run export && touch out/.nojekyll
+        run: yarn run export && touch out/.nojekyll
+      
+      - name: add CNAME
+        run: cp ./CNAME ./out/
 
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
